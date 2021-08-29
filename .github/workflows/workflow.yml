@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-deploy:
-    name: Build and deploy Portfolio
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -28,7 +28,7 @@ jobs:
       - name: Install Gatsby Source
         run: npm install gatsby-source-contentful
                   
-      - name: Build
+      - name: Build Gatsby Site
         run: gatsby build
         env:
            CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
@@ -41,7 +41,7 @@ jobs:
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: eu-central-1 
 
-      - name: Upload files to S3
+      - name: Upload files to S3 Bucket
         run: |
            aws s3 sync public s3://${{ secrets.AWS_S3_BUCKET }} --acl public-read --delete
            aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"   

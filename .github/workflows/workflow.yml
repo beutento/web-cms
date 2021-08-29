@@ -4,7 +4,7 @@ on:
   push:
     branches: master
   repository_dispatch:
-    types: [contentful.deploy]
+    types: [publish-event]
 
 jobs:
   build-and-deploy:

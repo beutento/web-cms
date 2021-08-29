@@ -24,6 +24,9 @@ jobs:
         
       - name: Install Gatsby CLI
         run: npm install -g gatsby-cli  
+      
+      - name: Install Gatsby Source
+        run: npm install gatsby-source-contentful
                   
       - name: Build
         run: gatsby build
